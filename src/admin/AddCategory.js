@@ -28,7 +28,8 @@ const AddCategory = () => {
             } else {
                 setError("");
                 setSuccess(true);
-            }
+	        setName('');            
+}
         });
     };
 
@@ -49,9 +50,9 @@ const AddCategory = () => {
         </form>
     );
 
-    const showSuccess = () => {
+    const showSuccess = (msg) => {
         if (success) {
-            return <h3 className="text-success">{name} is created</h3>;
+            return <h3 className="text-success">{msg}</h3>;
         }
     };
 
@@ -74,10 +75,10 @@ const AddCategory = () => {
             title="Add a new category"
             description={`G'day ${user.name}, ready to add a new category?`}
         >
-            <div className="row">
+            <div onBlur={() => setSuccess(false)} className="row">
                 <div className="col-md-8 offset-md-2">
-                    {showSuccess()}
-                    {showError()}
+                    {showSuccess('New category created')}
+		    {showError()}
                     {newCategoryFom()}
                     {goBack()}
                 </div>
